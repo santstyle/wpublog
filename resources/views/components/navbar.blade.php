@@ -97,11 +97,10 @@
                 <div class="flex items-center px-5">
                     <div class="shrink-0">
                         <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                            alt="" class="size-10 rounded-full" />
+                            alt="{{ Auth::user()->name }}" class="size-10 rounded-full" />
                     </div>
                     <div class="ml-3">
-                        <div class="text-base/5 font-medium text-white">Tom Cook</div>
-                        <div class="text-sm font-medium text-gray-400">tom@example.com</div>
+                        <div class="text-base/5 font-medium text-white">{{ Auth::user()->name }}</div>
                     </div>
                 </div>
                 <div class="mt-3 space-y-1 px-2">
