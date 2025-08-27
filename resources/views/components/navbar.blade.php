@@ -104,14 +104,19 @@
                     </div>
                 </div>
                 <div class="mt-3 space-y-1 px-2">
-                    <a href="#"
-                        class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your
+                    <a href="/profile"
+                        class="block rounded-md px-3 py-2 text-base font-medium
+                        text-gray-400 hover:bg-gray-700 hover:text-white">Your
                         Profile</a>
-                    <a href="#"
+                    <a href="/dashboard"
                         class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Settings</a>
-                    <a href="#"
-                        class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign
-                        out</a>
+                    <form method="POST" actions="/logout">
+                        @csrf
+                        <button type="submit" id="user-menu-item-2" role="menuitem" tabindex="-1"
+                            class="block w-full text-start rounded-md px-3 py-2 text-base font-medium
+                        text-gray-400 hover:bg-gray-700 hover:text-white cursor-pointer">Log
+                            out</button>
+                    </form>
                 </div>
             @else
                 <div class="my-3 space-y-1 px-2">
