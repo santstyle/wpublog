@@ -49,12 +49,15 @@
                             role="menu" tabindex="-1" aria-labelledby="user-menu-button" aria-orientation="vertical"
                             class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-hidden">
                             <!-- Active: "bg-gray-100 outline-hidden", Not Active: "" -->
-                            <a id="user-menu-item-0" role="menuitem" href="#" tabindex="-1"
+                            <a id="user-menu-item-0" role="menuitem" href="/profile" tabindex="-1"
                                 class="block px-4 py-2 text-sm text-gray-700">Your Profile</a>
-                            <a id="user-menu-item-1" role="menuitem" href="#" tabindex="-1"
+                            <a id="user-menu-item-1" role="menuitem" href="dashboard" tabindex="-1"
                                 class="block px-4 py-2 text-sm text-gray-700">Settings</a>
-                            <a id="user-menu-item-2" role="menuitem" href="#" tabindex="-1"
-                                class="block px-4 py-2 text-sm text-gray-700">Sign out</a>
+                            <form method="POST" actions="/logout">
+                                @csrf
+                                <button type="submit" id="user-menu-item-2" role="menuitem" tabindex="-1"
+                                    class="block px-4 py-2 text-sm text-gray-700 cursor-pointer">Log out</button>
+                            </form>
                         </div>
                     </div>
                 </div>
