@@ -120,6 +120,9 @@
                     </tbody>
                 </table>
             </div>
+            <div class="p-3">
+                {{ $posts->links() }}
+            </div>
         </div>
     </div>
 </section>
