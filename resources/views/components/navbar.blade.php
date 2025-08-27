@@ -8,10 +8,10 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <x-nav-link href="/" :current="request()->is('/')">Home</x-nav-link>
-                        <x-nav-link href="/posts" :current="request()->is('posts')">Blog</x-nav-link>
-                        <x-nav-link href="/about" :current="request()->is('about')">About</x-nav-link>
-                        <x-nav-link href="/contact" :current="request()->is('contact')">Contact</x-nav-link>
+                        <x-my-nav-link class="block" href="/" :current="request()->is('/')">Home</x-my-nav-link>
+                        <x-my-nav-link class="block" href="/posts" :current="request()->is('posts')">Blog</x-my-nav-link>
+                        <x-my-nav-link class="block" href="/about" :current="request()->is('about')">About</x-my-nav-link>
+                        <x-my-nav-link class="block" href="/contact" :current="request()->is('contact')">Contact</x-my-nav-link>
                     </div>
                 </div>
             </div>
@@ -19,14 +19,29 @@
                 <div class="ml-4 flex items-center md:ml-6">
                     <!-- Profile dropdown -->
                     <div class="relative ml-3">
-                        <button id="user-menu-button" type="button" @click =" isOpen = !isOpen " aria-expanded="false"
-                            aria-haspopup="true"
-                            class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800">
-                            <span class="absolute -inset-1.5"></span>
-                            <span class="sr-only">Open user menu</span>
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt="" class="size-8 rounded-full" />
-                        </button>
+                        @if (Auth::check())
+                            <button id="user-menu-button" type="button" @click =" isOpen = !isOpen "
+                                aria-expanded="false" aria-haspopup="true"
+                                class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800 cursor-pointer">
+                                <span class="absolute -inset-1.5"></span>
+                                <span class="sr-only">Open user menu</span>
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                    alt="" class="size-8 rounded-full" />
+                                <div class="text-gray-300 font-medium text-sm ml-4">{{ Auth::user()->name }}</div>
+                                <div class="ms-1 text-gray-300">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                        @else
+                            <a href="/login" class="text-white text-sm font-medium">Login</a>
+                            <span class="text-white font-medium text-sm">|</span>
+                            <a href="/register" class="text-white text-sm font-medium">Register</a>
+                        @endif
                         <div x-show="isOpen" x-transition:enter="transition ease-out duration-100 transform"
                             x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                             x-transition:leave="transition ease-in duration-75 transform"
@@ -69,10 +84,10 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div x-show="isOpen" id="mobile-menu" class="md:hidden">
         <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-            <x-nav-link class="block" href="/" :current="request()->is('/')">Home</x-nav-link>
-            <x-nav-link class="block" href="/posts" :current="request()->is('posts')">Blog</x-nav-link>
-            <x-nav-link class="block" href="/about" :current="request()->is('about')">About</x-nav-link>
-            <x-nav-link class="block" href="/contact" :current="request()->is('contact')">Contact</x-nav-link>
+            <x-my-nav-link class="block" href="/" :current="request()->is('/')">Home</x-my-nav-link>
+            <x-my-nav-link class="block" href="/posts" :current="request()->is('posts')">Blog</x-my-nav-link>
+            <x-my-nav-link class="block" href="/about" :current="request()->is('about')">About</x-my-nav-link>
+            <x-my-nav-link class="block" href="/contact" :current="request()->is('contact')">Contact</x-my-nav-link>
         </div>
         <div class="border-t border-gray-700 pt-4 pb-3">
             <div class="flex items-center px-5">
