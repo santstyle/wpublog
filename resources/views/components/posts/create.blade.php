@@ -6,7 +6,7 @@
     </div>
 
     {{-- Validation Errors    --}}
-    @if ($errors->any())
+    {{-- @if ($errors->any())
         <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
             role="alert">
             <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@
                 </ul>
             </div>
         </div>
-    @endif
+    @endif --}}
 
     <!-- Modal body -->
     <form action="/dashboard" method="POST">
@@ -32,24 +32,36 @@
         <div class="mb-4">
             <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
             <input type="text" name="title" id="title"
-                class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                class="@error('title') bg-red-50  border-red-500 text-red-700 border-gray-300 text-gray-900  focus:ring-red-500  focus:border-red-500 @enderror
+                border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 placeholder="Type post title" autofocus value="{{ old('title') }}">
+            @error('title')
+                <p class="mt-2 text-xs text-red-600 dark:text-red-500">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-4"><label for="category"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
             <select name="category_id" id="category"
-                class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                class="@error('category_id') bg-red-50  border-red-500 text-red-700 border-gray-300 text-gray-900  focus:ring-red-500  focus:border-red-500 @enderror 
+                border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                 <option selected="" value="">Select post category</option>
                 @foreach (App\Models\Category::get() as $category)
                     <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>{{ $category->name }}</option>
                 @endforeach
             </select>
+            @error('category_id')
+                <p class="mt-2 text-xs text-red-600 dark:text-red-500">{{ $message }}</p>
+            @enderror
         </div>
         <div class="mb-4">
             <label for="body" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Body</label>
             <textarea id="body" name="body" rows="4"
-                class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                class="@error('body') bg-red-50  border-red-500 text-red-700 border-gray-300 text-gray-900  focus:ring-red-500  focus:border-red-500 @enderror
+                block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 placeholder="Write post body here">{{ old('body') }}</textarea>
+            @error('body')
+                <p class="mt-2 text-xs text-red-600 dark:text-red-500">{{ $message }}</p>
+            @enderror
         </div>
         <div class="flex gap-2">
             <button type="submit"

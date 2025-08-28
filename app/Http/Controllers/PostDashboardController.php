@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Support\Str;
+use Nette\Utils\Validators;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PostDashboardController extends Controller
 {
@@ -37,11 +39,18 @@ class PostDashboardController extends Controller
     public function store(Request $request)
     {
         // validation
-        $request->validate([
-            'title' => 'required',
+        // $request->validate([
+        //     'title' => 'required|unique:posts|min:4|max:255',
+        //     'category_id' => 'required',
+        //     'body' => 'required'
+        // ]);
+        Validator::make($request->all(), [
+            'title' => 'required|unique:posts|min:4|max:255',
             'category_id' => 'required',
             'body' => 'required'
-        ]);
+        ], [
+            'required' => 'Field :attribute harus di isi!'
+        ])->validate();
 
         Post::create([
             'title' => $request->title,
