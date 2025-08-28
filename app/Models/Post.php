@@ -10,7 +10,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'author', 'slug', 'body'];
+
+    // protected $fillable = ['title', 'author_id', 'category_id', 'slug', 'body'];
+    protected $guarded = [];
 
     protected $with = ['author', 'category'];
 

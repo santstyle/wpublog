@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Container\Attributes\Auth;
-use Illuminate\Support\Facades\Auth as enter;
+use Illuminate\Support\Facades\Auth;
 
 class PostDashboardController extends Controller
 {
@@ -14,7 +14,7 @@ class PostDashboardController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->where('author_id', enter::user()->id);
+        $posts = Post::latest()->where('author_id', Auth::user()->id);
 
         if (request('keyword')) {
             $posts->where('title', 'like', '%' . request('keyword') . '%');
@@ -36,7 +36,14 @@ class PostDashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Post::create([
+            'title' => $request->title,
+            'author_id' => Auth::user()->id,
+            'category_id' => $request->category_id,
+            'slug' => Str::slug($request->title),
+            'body' => $request->body
+        ]);
+        return redirect('/dashboard');
     }
 
     /**
