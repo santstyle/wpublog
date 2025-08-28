@@ -49,7 +49,13 @@ class PostDashboardController extends Controller
             'category_id' => 'required',
             'body' => 'required'
         ], [
-            'required' => 'Field :attribute harus di isi!'
+            'required' => 'Field :attribute harus di isi!',
+            'category_id.required' => 'Pilih salah satu :attribute',
+            'body.required' => ':attribute ga boleh kosong!'
+        ], [
+            'title' => 'Judul',
+            'category_id' => 'Category',
+            'body' => 'Tulisan'
         ])->validate();
 
         Post::create([
