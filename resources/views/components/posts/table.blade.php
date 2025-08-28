@@ -87,7 +87,7 @@
                                             </button>
                                         </li>
                                         <li>
-                                            <a href="/dashboard/{{ $post->slug }}"
+                                            <a href="dashboard/{{ $post->slug }}"
                                                 data-modal-target="readProductModal1"
                                                 data-modal-toggle="readProductModal1"
                                                 class="flex w-full items-center py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-gray-700 dark:text-gray-200">

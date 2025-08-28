@@ -1,27 +1,8 @@
-    <x-layout :title="$title">
-
-        {{-- <article class="py-8 max-w-screen-md ">
-            <h2 class="mb-1 text-3-xl tracking-tight font-bold text-gray-900">{{ $post['title'] }}</h2>
-            <div class="text-base text-gray-500">
-                <a href="/authors/{{ $post->author->username }}" class="hover:underline">{{ $post->author->name }}</a> | 1
-                Januari 2025
-            </div>
-            <p class="my-4 font-light">{{ $post['body'] }}</p>
-            <a href="/posts" class="font-medium text-blue-500 hover:underline">
-                &laquo; Back to all posts.</a>
-        </article> --}}
-
-        <!--
-Install the "flowbite-typography" NPM package to apply styles and format the article content:
-
-URL: https://flowbite.com/docs/components/typography/
--->
-
         <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
             <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
                 <article
                     class="mx-auto w-full max-w-4xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
-                    <a href="/posts" class="font-medium text-xs text-blue-500 hover:underline">
+                    <a href="/dashboard" class="font-medium text-xs text-blue-500 hover:underline">
                         &laquo; Back to all posts.</a>
                     <header class="my-4 lg:mb-6 not-format">
                         <address class="flex items-center mb-6 not-italic">
@@ -51,4 +32,3 @@ URL: https://flowbite.com/docs/components/typography/
                 </article>
             </div>
         </main>
-    </x-layout>
