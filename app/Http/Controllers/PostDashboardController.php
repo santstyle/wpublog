@@ -65,7 +65,7 @@ class PostDashboardController extends Controller
             'slug' => Str::slug($request->title),
             'body' => $request->body
         ]);
-        return redirect('/dashboard');
+        return redirect('/dashboard')->with(['success' => 'Your post has been saved!']);
     }
 
     /**
