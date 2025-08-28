@@ -33,7 +33,7 @@
             <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
             <input type="text" name="title" id="title"
                 class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="Type post title" autofocus>
+                placeholder="Type post title" autofocus value="{{ old('title') }}">
         </div>
         <div class="mb-4"><label for="category"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
@@ -41,7 +41,7 @@
                 class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                 <option selected="" value="">Select post category</option>
                 @foreach (App\Models\Category::get() as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>{{ $category->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -49,7 +49,7 @@
             <label for="body" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Body</label>
             <textarea id="body" name="body" rows="4"
                 class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="Write post body here"></textarea>
+                placeholder="Write post body here">{{ old('body') }}</textarea>
         </div>
         <div class="flex gap-2">
             <button type="submit"
