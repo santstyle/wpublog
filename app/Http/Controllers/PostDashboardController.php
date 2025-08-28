@@ -38,7 +38,7 @@ class PostDashboardController extends Controller
     {
         // validation
         $request->validate([
-            'title' => 'recuired',
+            'title' => 'required',
             'category_id' => 'required',
             'body' => 'required'
         ]);
