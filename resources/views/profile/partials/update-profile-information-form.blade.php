@@ -62,13 +62,18 @@
             <label class="block mb-2 text-sm font-medium text-gray-800 dark:text-white" for="avatar">Upload
                 avatar</label>
             <input
-                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                aria-describedby="avatar_help" id="avatar" name="avatar" type="file">
-            <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="avatar_help">.png or .jpg</div>
+                class="@error('avatar') bg-red-50  border-red-500 text-red-700 border-gray-300 text-gray-900  focus:ring-red-500  focus:border-red-500 @enderror block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                aria-describedby="avatar_help" id="avatar" name="avatar" type="file"
+                accept="image/png,image/jpg,image/jpeg">
+            <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="avatar_help">file image only png,jpg,jpeg and
+                under 10mb.</div>
+            @error('avatar')
+                <p class="mt-2 text-xs text-red-600 dark:text-red-500">{{ $message }}</p>
+            @enderror
         </div>
         <div>
             <img class="w-20 h-20 rounded-full"
-                src="{{ $user->avatar ? asset($user->avatar) : asset('img/default-avatar.jpg') }}"
+                src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('img/default-avatar.jpg') }}"
                 alt="{{ $user->name }}">
         </div>
 
