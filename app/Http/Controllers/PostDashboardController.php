@@ -91,14 +91,22 @@ class PostDashboardController extends Controller
     {
         // Validation
         $request->validate([
-            'title' => 'required|unique:posts|min:4|max:255',
+            'title' => 'required|min:4|max:255|unique:posts,title' . $post->id,
             'category_id' => 'required',
             'body' => 'required'
         ]);
 
         // Update Post
+        $post->update([
+            'title' => $request->title,
+            'author_id' => Auth::user()->id,
+            'category_id' => $request->category_id,
+            'slug' => Str::slug($request->title),
+            'body' => $request->body
+        ]);
 
         // Redirect
+        return redirect('/dashboard')->with(['success' => 'Your post has been updated!']);
     }
 
     /**
