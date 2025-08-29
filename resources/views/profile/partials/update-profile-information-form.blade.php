@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -67,7 +67,9 @@
             <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="avatar_help">.png or .jpg</div>
         </div>
         <div>
-            <img class="w-20 h-20 rounded-full" src="{{ asset('img/default-avatar.jpg') }}" alt="{{ $user->name }}">
+            <img class="w-20 h-20 rounded-full"
+                src="{{ $user->avatar ? asset($user->avatar) : asset('img/default-avatar.jpg') }}"
+                alt="{{ $user->name }}">
         </div>
 
         <div class="flex items-center gap-4">
